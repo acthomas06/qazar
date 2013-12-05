@@ -1,4 +1,4 @@
-
+from cloudtestenvironment import db
 
 class Customer(db.Model):
 	__tablename__ = "customers"

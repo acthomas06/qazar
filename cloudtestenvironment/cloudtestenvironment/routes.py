@@ -118,7 +118,7 @@ def order_submit():
 	db.session.add(order_items)
 	db.session.commit()
 		#TODO: save cc form
-	if purchase_form.submit.data == True:
+	if paypal_form.submit.data == True:
 		return redirect('https://www.paypal.com/cgi-bin/webscr')
 	content = render_template('order.html', paypal_form=paypal_form, credit_card_form=credit_card_form, order_form=order_form)
 	return content
@@ -126,13 +126,6 @@ def order_submit():
 @app.route('/payment')
 @app.route('/payment.html')
 def payment():
-
-	content = render_template('payment.html')
-
-	#content = index()
-	#content += " payment page"
-	purchase_form = PurchaseForm()
-	content = render_template('payment.html', purchase_form=purchase_form)
 
 	#content = index()
 	#content += " payment page"
@@ -142,11 +135,6 @@ def payment():
 
 @app.route('/payment/<method>', defaults={'method': 'paypal'})
 def payment_method(method):
-
-	content = render_template('creditcard.html')
-	return content
-
-
 	#content = payment()
 	#content += " method: " + method
 	content = render_template('creditcard.html')
